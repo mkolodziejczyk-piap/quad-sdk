@@ -51,6 +51,14 @@ add_library(spawn_lock SHARED
   src/spawn_lock_plugin.cpp
 )
 
+target_link_libraries(ground_truth_estimator pinocchio::pinocchio)
+
+target_link_libraries(quad_wheel_ground_truth_estimator pinocchio::pinocchio)
+
+target_link_libraries(quad_controller pinocchio::pinocchio)
+
+target_link_libraries(quad_wheel_controller pinocchio::pinocchio)
+
 
 target_include_directories(ground_truth_estimator PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

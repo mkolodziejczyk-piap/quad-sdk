@@ -45,6 +45,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   $<INSTALL_INTERFACE:include>
 )
 
+target_link_libraries(${PROJECT_NAME} pinocchio::pinocchio)
+
 add_executable(${PROJECT_NAME}_node src/force_applicator_node.cpp)
 target_link_libraries(${PROJECT_NAME}_node ${PROJECT_NAME})
 ament_target_dependencies(${PROJECT_NAME}_node

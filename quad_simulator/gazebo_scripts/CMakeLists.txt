@@ -45,6 +45,8 @@ ament_target_dependencies(contact_state_publisher_node
   ros_gz_interfaces
 )
 
+target_link_libraries(contact_state_publisher_node pinocchio::pinocchio)
+
 # Install Targets
 install(TARGETS contact_state_publisher_node
   DESTINATION lib/${PROJECT_NAME}

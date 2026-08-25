@@ -39,6 +39,9 @@ ament_target_dependencies(${PROJECT_NAME}
   quad_msgs
   quad_utils
 )
+
+target_link_libraries(${PROJECT_NAME} pinocchio::pinocchio)
+
 add_executable(${PROJECT_NAME}_node src/global_body_planner_node.cpp)
 target_link_libraries(${PROJECT_NAME}_node ${PROJECT_NAME})
 ament_target_dependencies(${PROJECT_NAME}_node

@@ -170,8 +170,10 @@ ament_target_dependencies(quad_utils
   tf2
   tf2_geometry_msgs
   cv_bridge
-  pinocchio
+  # pinocchio
 )
+
+target_link_libraries(quad_utils pinocchio::pinocchio)
 
 ament_target_dependencies(mesh_to_grid_map_node rclcpp)
 

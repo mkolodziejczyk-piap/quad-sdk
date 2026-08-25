@@ -36,6 +36,8 @@ ament_target_dependencies(${PROJECT_NAME}
   global_body_planner
 )
 
+target_link_libraries(${PROJECT_NAME} pinocchio::pinocchio)
+
 add_executable(${PROJECT_NAME}_node src/conflict_based_search_node.cpp)
 target_link_libraries(${PROJECT_NAME}_node ${PROJECT_NAME})
 target_include_directories(${PROJECT_NAME}_node

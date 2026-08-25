@@ -136,6 +136,8 @@ ament_target_dependencies(robot_driver
   geometry_msgs
 )
 
+target_link_libraries(robot_driver pinocchio::pinocchio)
+
 add_executable(robot_driver_node src/robot_driver_node.cpp)
 target_link_libraries(robot_driver_node robot_driver)
 ament_target_dependencies(robot_driver_node

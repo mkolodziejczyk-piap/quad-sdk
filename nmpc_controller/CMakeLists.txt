@@ -75,6 +75,7 @@ target_include_directories(nmpc_controller PUBLIC
   ${EIGEN3_INCLUDE_DIRS}
 )
 
+target_link_libraries(nmpc_controller pinocchio::pinocchio)
 
 install(
   DIRECTORY config/

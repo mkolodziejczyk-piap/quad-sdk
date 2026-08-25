@@ -26,6 +26,8 @@ ament_target_dependencies(cmd_vel_publisher_node
   quad_utils
 )
 
+target_link_libraries(cmd_vel_publisher_node pinocchio::pinocchio)
+
 install(TARGETS cmd_vel_publisher_node
   RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
