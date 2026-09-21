@@ -42,6 +42,11 @@
             <uri>model://vision60/meshes/v5_body_decimated.stl</uri>
           </mesh>
         </geometry>
+        <material>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.3 0.3 0.3 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+        </material>
       </visual>
       <gravity>1</gravity>
     </link>
@@ -1248,6 +1253,8 @@
         <parameter name="use_sim_time">true</parameter>
       </ros>
     </plugin>
+
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher"/>
 
   </model>
 </sdf>
