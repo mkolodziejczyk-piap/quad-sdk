@@ -11,6 +11,7 @@ from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
 import os
 import xacro
+from launch.actions import TimerAction
 
 def load_robot_params(context, *args, **kwargs):
     """Parse URDF from robot_type if robot_description was not provided."""
@@ -131,7 +132,12 @@ def generate_launch_description():
     # NOT push it again. robot_state_publisher is owned by robot_bringup
     # in this path.
     sim_group = GroupAction([
-        _make_robot_driver_node(),
+        TimerAction(
+            period=3.0,
+            actions=[
+                    _make_robot_driver_node(),
+            ],
+        ),
     ], condition=UnlessCondition(LaunchConfiguration('is_hardware')))
 
     return LaunchDescription([
