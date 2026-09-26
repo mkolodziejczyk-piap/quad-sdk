@@ -49,10 +49,10 @@
         </material>
       </visual>
       <gravity>1</gravity>
-      <sensor name="gps_${id}" type="navsat">
+      <sensor name="gps_1" type="navsat">
         <always_on>1</always_on>
-        <update_rate>${update_rate}</update_rate>
-        <topic>${ns}/gps_${id}</topic>
+        <update_rate>10</update_rate>
+        <topic>quadruped/gps_1</topic>
       </sensor>
     </link>
 
