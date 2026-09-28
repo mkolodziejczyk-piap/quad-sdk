@@ -890,6 +890,7 @@ bool isValidState(const State& s, const PlannerConfig& planner_config,
     if (collision_clearance < planner_config.h_min) {
 #ifdef DEBUG_INVALID_STATE
       printf("h_min exceeded for leg, phase = %d\n", phase);
+      printf("collision clearance = %d\n", collision_clearance);
       printStateNewline(s);
 #endif
       return false;
