@@ -896,9 +896,12 @@ bool isValidState(const State& s, const PlannerConfig& planner_config,
 #ifdef DEBUG_INVALID_STATE
       printf("h_min exceeded for leg, phase = %d\n", phase);
       printf("collision clearance = %d\n", collision_clearance);
-      printf("collision_point Z = %d\n", collision_point.z());
-      printf("collision_point X = %d\n", collision_point.x());
-      printf("collision_point Y = %d\n", collision_point.y());
+      // printf("collision_point Z = %d\n", collision_point.z());
+      // printf("collision_point X = %d\n", collision_point.x());
+      // printf("collision_point Y = %d\n", collision_point.y());
+      std::cout << "collision_point: " << collision_point << std::endl;
+      std::cout << "getTerrainZFiltered: " << getTerrainZFiltered(collision_point, planner_config) << std::endl;
+      
       printStateNewline(s);
 #endif
       return false;
