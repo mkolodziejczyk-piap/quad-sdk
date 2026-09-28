@@ -127,7 +127,7 @@ def launch_global_planner(context, *args, **kwargs):
             package='global_body_planner',
             executable='global_body_planner_node',
             name='global_body_planner',
-            # output='screen',
+            output='screen',
             remappings=[
                 ('start_state', 'state/ground_truth'),
                 ('goal_state', 'clicked_point')
