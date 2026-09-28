@@ -866,6 +866,9 @@ bool isValidState(const State& s, const PlannerConfig& planner_config,
   Eigen::Matrix3d R_mat;
   R_mat << cy * cp, -sy, cy * sp, sy * cp, cy, sy * sp, -sp, 0, cp;
 
+  std::cout << "R_mat: " << R_mat << std::endl;
+  std::cout << "planner_config.collision_points_body: " << planner_config.collision_points_body << std::endl;  
+
   // Compute the collision points in the world frame
   Eigen::Matrix<double, 3, planner_config.num_collision_points>
       collision_points_world =
