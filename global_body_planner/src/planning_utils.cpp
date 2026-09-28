@@ -900,7 +900,7 @@ bool isValidState(const State& s, const PlannerConfig& planner_config,
       // printf("collision_point X = %d\n", collision_point.x());
       // printf("collision_point Y = %d\n", collision_point.y());
       std::cout << "collision_point: " << collision_point << std::endl;
-      std::cout << "getTerrainZFiltered: " << getTerrainZFiltered(collision_point, planner_config) << std::endl;
+      std::cout << "getTerrainZ: " << getTerrainZ(collision_point, planner_config) << std::endl;
       
       printStateNewline(s);
 #endif
