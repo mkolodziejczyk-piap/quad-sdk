@@ -934,6 +934,8 @@ bool isValidState(const State& s, const PlannerConfig& planner_config,
                     getZRelToTerrain(reachability_point, planner_config);
 #ifdef DEBUG_INVALID_STATE
     printf("legs are NOT over a valid region, phase = %d\n", phase);
+    std::cout << "getTraversability(pos, planner_config): " << getTraversability(s.pos, planner_config) << std::endl;
+
 #endif      
       return false;
     }
