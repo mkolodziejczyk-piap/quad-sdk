@@ -1,7 +1,8 @@
 /**/global_body_planner:
   ros__parameters:
     global_body_planner: 
-      h_max: 0.76                           # Maximum height of leg base, m
+      # h_max: 0.76                           # Maximum height of leg base, m
+      h_max: 1.5                           # Maximum height of leg base, m      
       # h_min: 0.35                            # Minimum ground clearance of body corners, m
       h_min: 0.01                            # Minimum ground clearance of body corners, m
       h_nom: 0.419                            # Nominal ground clearance of body, m
