@@ -872,10 +872,9 @@ bool isValidState(const State& s, const PlannerConfig& planner_config,
           R_mat * planner_config.collision_points_body +
           s.pos.replicate(1, planner_config.num_collision_points);
 
-  std::cout << "R_mat: " << R_mat << std::endl;
-  std::cout << "planner_config.collision_points_body: " << planner_config.collision_points_body << std::endl;
-  std::cout << "collision_points_world: " << collision_points_world << std::endl;
-
+  // std::cout << "R_mat: " << R_mat << std::endl;
+  // std::cout << "planner_config.collision_points_body: " << planner_config.collision_points_body << std::endl;
+  // std::cout << "collision_points_world: " << collision_points_world << std::endl;
 
   // Check each of the four corners of the robot
   for (int i = 0; i < planner_config.num_collision_points; i++) {
@@ -933,6 +932,9 @@ bool isValidState(const State& s, const PlannerConfig& planner_config,
     if (!isTraversable(reachability_point, planner_config) && phase != FLIGHT) {
       max_valid_z = s.pos[2] + planner_config.h_max -
                     getZRelToTerrain(reachability_point, planner_config);
+#ifdef DEBUG_INVALID_STATE
+    printf("legs are NOT over a valid region, phase = %d\n", phase);
+#endif      
       return false;
     }
 
@@ -982,6 +984,9 @@ bool isValidState(const State& s, const PlannerConfig& planner_config,
   if (!planner_config.dynamic_constraints.empty()) {
     if (failsRobotConstraint(s, t, planner_config)) {
       g_validity_stats.constraint_rejects++;
+#ifdef DEBUG_INVALID_STATE
+    printf("OBB-OBB check FAILED, phase = %d\n", phase);
+#endif
       return false;
     }
   }
