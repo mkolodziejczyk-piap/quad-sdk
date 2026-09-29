@@ -839,6 +839,8 @@ bool isValidState(const State& s, const PlannerConfig& planner_config,
 #ifdef DEBUG_INVALID_STATE
     printf("!isContactTraversable, phase = %d\n", phase);
     printStateNewline(s);
+    std::cout << "s.pos: " << s.pos << std::endl;
+    std::cout << "getTraversability(s.pos, planner_config): " << getTraversability(s.pos, planner_config) << std::endl;
 #endif
     return false;
   }
@@ -933,8 +935,9 @@ bool isValidState(const State& s, const PlannerConfig& planner_config,
       max_valid_z = s.pos[2] + planner_config.h_max -
                     getZRelToTerrain(reachability_point, planner_config);
 #ifdef DEBUG_INVALID_STATE
-    printf("legs are NOT over a valid region, phase = %d\n", phase);
-    std::cout << "getTraversability(pos, planner_config): " << getTraversability(s.pos, planner_config) << std::endl;
+    printf("legs are NOT over a valid region, phase = %d\n", phase);    
+    std::cout << "reachability_point: " << reachability_point << std::endl;
+    std::cout << "getTraversability(pos, planner_config): " << getTraversability(reachability_point, planner_config) << std::endl;
 
 #endif      
       return false;
