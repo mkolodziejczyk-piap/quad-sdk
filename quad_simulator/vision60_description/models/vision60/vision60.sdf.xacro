@@ -1261,7 +1261,7 @@
 
     <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher"/>
 
-    <plugin filename="gz-sim-navsat-system" name="gz::sim::systems::NavSat"/>
+    <!-- <plugin filename="gz-sim-navsat-system" name="gz::sim::systems::NavSat"/> -->
 
   </model>
 </sdf>
