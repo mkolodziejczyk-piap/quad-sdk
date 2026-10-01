@@ -132,6 +132,7 @@ def spawn_sdf_model(context, *args, **kwargs):
 
     pose = _parse_init_pose(init_pose)
     args = [
+        '-world', 'swat_shoal',
         '-name', namespace,
         '-string', sdf,
         '-x', pose.get('-x', '0.0'),
