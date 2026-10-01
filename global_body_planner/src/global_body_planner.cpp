@@ -95,7 +95,9 @@ GlobalBodyPlanner::GlobalBodyPlanner(rclcpp::Node::SharedPtr node)
   // it, and the eventual transition to the CBS plan corrupts internal
   // indexing state.
   cbs_mode_ = node_->declare_parameter<bool>(
-      "global_body_planner.cbs_mode", true);
+      "global_body_planner.cbs_mode", false);
+
+  cbs_mode_ = true;
 
   // Fill in the goal state information
   goal_state_vec.resize(12, 0);
