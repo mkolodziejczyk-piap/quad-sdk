@@ -82,6 +82,8 @@ class GlobalBodyPlanner {
    */
   void goalStateCallback(const geometry_msgs::msg::PointStamped::SharedPtr msg);
 
+  void plannerOnCallback(const std_msgs::msg::Bool::SharedPtr msg);  
+
   /**
    * @brief Trigger a reset event
    */
@@ -151,6 +153,9 @@ class GlobalBodyPlanner {
   /// Subscriber for goal state messages
   rclcpp::Subscription<geometry_msgs::msg::PointStamped>::SharedPtr
       goal_state_sub_;
+
+  rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr
+      planner_on_sub_;
 
   /// Publisher for body plan messages
   rclcpp::Publisher<quad_msgs::msg::RobotPlan>::SharedPtr body_plan_pub_;
@@ -293,6 +298,8 @@ class GlobalBodyPlanner {
 
   /// Timestamp for t=0 of global plan
   rclcpp::Time global_plan_timestamp_;
+
+  bool planner_on;
 };
 
 #endif  // GLOBAL_BODY_PLANNER_H

@@ -49,6 +49,13 @@ GlobalBodyPlanner::GlobalBodyPlanner(rclcpp::Node::SharedPtr node)
           goal_state_topic, 10,
           std::bind(&GlobalBodyPlanner::goalStateCallback, this,
                     std::placeholders::_1));
+  
+  planner_on_sub_ =
+      node_->create_subscription<std_msgs::msg::Bool>(
+          "planner_on", 10,
+          std::bind(&GlobalBodyPlanner::plannerOnCallback, this,
+                    std::placeholders::_1));
+  
   body_plan_pub_ =
       node_->create_publisher<quad_msgs::msg::RobotPlan>(body_plan_topic, 10);
   discrete_body_plan_pub_ = node_->create_publisher<quad_msgs::msg::RobotPlan>(
@@ -58,6 +65,8 @@ GlobalBodyPlanner::GlobalBodyPlanner(rclcpp::Node::SharedPtr node)
   goal_reached_pub_ =
       node_->create_publisher<std_msgs::msg::Bool>("goal_reached", 10);
 
+  planner_on_ = false;    
+  
   // Note: the plan_with_constraints service is intentionally NOT advertised
   // here. waitForData() inside spin() calls rclcpp::spin_some() repeatedly
   // while it waits for the first terrain map and state messages, and that
@@ -158,6 +167,11 @@ void GlobalBodyPlanner::goalStateCallback(
       (node_->now() - current_plan_.getPublishedTimestamp()).seconds()) {
     triggerReset();
   }
+}
+
+void GlobalBodyPlanner::plannerOnCallback(
+    const std_msgs::msg::Bool::SharedPtr msg) {
+    planner_on_ = msg.data;
 }
 
 void GlobalBodyPlanner::setStartState() {
@@ -362,6 +376,10 @@ void GlobalBodyPlanner::waitForData() {
   while (!map_recieved_ && rclcpp::ok()) {
     rclcpp::spin_some(node_);
   }
+
+  while (!planner_on_ && rclcpp::ok()) {
+    rclcpp::spin_some(node_);
+  }  
 
   quad_msgs::msg::RobotState state_msg;
   bool got_state = false;
