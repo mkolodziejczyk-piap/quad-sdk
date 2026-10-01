@@ -174,7 +174,7 @@ void GlobalBodyPlanner::goalStateCallback(
 void GlobalBodyPlanner::plannerOnCallback(
     const std_msgs::msg::Bool::SharedPtr msg) {
     // planner_on_ = msg->data;
-    cbs_mode_ = msg->data;
+    cbs_mode_ = !msg->data;
 }
 
 void GlobalBodyPlanner::setStartState() {
@@ -490,12 +490,12 @@ void GlobalBodyPlanner::spin() {
     // wins). The service callback handles planning + publishing in this
     // mode.
     if (cbs_mode_) {
-      RCLCPP_INFO(node_->get_logger(), "cbs_mode");
+      // RCLCPP_INFO(node_->get_logger(), "cbs_mode");
       r.sleep();
       continue;
     }
 
-    RCLCPP_INFO(node_->get_logger(), "after cbs_mode");
+    // RCLCPP_INFO(node_->get_logger(), "after cbs_mode");
 
     // Set the start and goal states
     setStartState();
