@@ -171,7 +171,7 @@ void GlobalBodyPlanner::goalStateCallback(
 
 void GlobalBodyPlanner::plannerOnCallback(
     const std_msgs::msg::Bool::SharedPtr msg) {
-    planner_on_ = msg.data;
+    planner_on_ = msg->data;
 }
 
 void GlobalBodyPlanner::setStartState() {

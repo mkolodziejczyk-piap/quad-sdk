@@ -299,7 +299,7 @@ class GlobalBodyPlanner {
   /// Timestamp for t=0 of global plan
   rclcpp::Time global_plan_timestamp_;
 
-  bool planner_on;
+  bool planner_on_;
 };
 
 #endif  // GLOBAL_BODY_PLANNER_H
