@@ -302,7 +302,7 @@ def generate_launch_description():
             description='If true, the GBP spin loop is suppressed from boot — the plan_with_constraints service path becomes the sole source of published plans. multi_robot.py overrides this to true; quad_plan.py leaves it false.'),
         OpaqueFunction(function=load_robot_params),
         OpaqueFunction(function=launch_logging), 
-        # OpaqueFunction(function=launch_global_planner),
+        OpaqueFunction(function=launch_global_planner),
         OpaqueFunction(function=launch_twist_input_nodes),
         OpaqueFunction(function=launch_local_planner),
         OpaqueFunction(function=launch_body_force_estimator),
