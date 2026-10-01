@@ -488,9 +488,12 @@ void GlobalBodyPlanner::spin() {
     // wins). The service callback handles planning + publishing in this
     // mode.
     if (cbs_mode_) {
+      RCLCPP_INFO(node_->get_logger(), "cbs_mode");
       r.sleep();
       continue;
     }
+
+    RCLCPP_INFO(node_->get_logger(), "after cbs_mode");
 
     // Set the start and goal states
     setStartState();
