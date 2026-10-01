@@ -95,7 +95,7 @@ GlobalBodyPlanner::GlobalBodyPlanner(rclcpp::Node::SharedPtr node)
   // it, and the eventual transition to the CBS plan corrupts internal
   // indexing state.
   cbs_mode_ = node_->declare_parameter<bool>(
-      "global_body_planner.cbs_mode", false);
+      "global_body_planner.cbs_mode", true);
 
   // Fill in the goal state information
   goal_state_vec.resize(12, 0);
@@ -171,7 +171,8 @@ void GlobalBodyPlanner::goalStateCallback(
 
 void GlobalBodyPlanner::plannerOnCallback(
     const std_msgs::msg::Bool::SharedPtr msg) {
-    planner_on_ = msg->data;
+    // planner_on_ = msg->data;
+    cbs_mode_ = msg->data;
 }
 
 void GlobalBodyPlanner::setStartState() {
@@ -377,9 +378,9 @@ void GlobalBodyPlanner::waitForData() {
     rclcpp::spin_some(node_);
   }
 
-  while (!planner_on_ && rclcpp::ok()) {
-    rclcpp::spin_some(node_);
-  }  
+  // while (!planner_on_ && rclcpp::ok()) {
+  //   rclcpp::spin_some(node_);
+  // }  
 
   quad_msgs::msg::RobotState state_msg;
   bool got_state = false;
