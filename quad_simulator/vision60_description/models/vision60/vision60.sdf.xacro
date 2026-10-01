@@ -1259,8 +1259,10 @@
       </ros>
     </plugin>
 
-    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher"/>
-
+    <!-- for VR -->
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <update_rate>60</update_rate>
+    </plugin>
     <!-- <plugin filename="gz-sim-navsat-system" name="gz::sim::systems::NavSat"/> -->
 
   </model>
