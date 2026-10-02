@@ -74,6 +74,8 @@ class LocalPlanner {
    */
   void cmdVelCallback(const geometry_msgs::msg::Twist::SharedPtr msg);
 
+  void plannerOffCallback(const std_msgs::msg::Bool::SharedPtr msg);  
+
   /**
    * @brief Function to compute reference trajectory from twist command or
    * global plan
@@ -116,6 +118,8 @@ class LocalPlanner {
 
   /// Subscriber for twist input messages
   rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
+
+  rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr planner_off_sub_;
 
   /// ROS publisher for local plan output
   rclcpp::Publisher<quad_msgs::msg::RobotPlan>::SharedPtr local_plan_pub_;

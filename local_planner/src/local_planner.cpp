@@ -43,6 +43,10 @@ LocalPlanner::LocalPlanner(rclcpp::Node::SharedPtr node)
       cmd_vel_topic, 10,
       std::bind(&LocalPlanner::cmdVelCallback, this, std::placeholders::_1));
 
+  planner_off_sub_ = node_->create_subscription<std_msgs::msg::Bool>(
+      "planner_off", 10,
+      std::bind(&LocalPlanner::plannerOffCallback, this, std::placeholders::_1));
+
   local_plan_pub_ =
       node_->create_publisher<quad_msgs::msg::RobotPlan>(local_plan_topic, 10);
   foot_plan_discrete_pub_ =
@@ -243,6 +247,14 @@ void LocalPlanner::cmdVelCallback(
 
   // Record when this was last reached for safety
   last_cmd_vel_msg_time_ = node_->now();
+}
+
+void LocalPlanner::plannerOffCallback(
+    const std_msgs::msg::Bool::SharedPtr msg) {
+
+  if (msg.data) {
+    body_plan_msg_ = nullptr; 
+  }
 }
 
 void LocalPlanner::getReference() {
