@@ -252,7 +252,7 @@ void LocalPlanner::cmdVelCallback(
 void LocalPlanner::plannerOffCallback(
     const std_msgs::msg::Bool::SharedPtr msg) {
 
-  if (msg.data) {
+  if (msg->data) {
     body_plan_msg_ = nullptr; 
   }
 }
