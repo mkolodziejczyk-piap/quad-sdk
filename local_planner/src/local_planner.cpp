@@ -44,7 +44,7 @@ LocalPlanner::LocalPlanner(rclcpp::Node::SharedPtr node)
       std::bind(&LocalPlanner::cmdVelCallback, this, std::placeholders::_1));
 
   planner_off_sub_ = node_->create_subscription<std_msgs::msg::Bool>(
-      "planner_off", 10,
+      "local_planner_off", 10,
       std::bind(&LocalPlanner::plannerOffCallback, this, std::placeholders::_1));
 
   local_plan_pub_ =
